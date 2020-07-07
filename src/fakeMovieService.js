@@ -95,3 +95,12 @@ export function deleteMovie(id) {
   movies.splice(movies.indexOf(movieInDb), 1);
   return movieInDb;
 }
+
+export const addLikesToMovies = () => {
+  const moviesList = getMovies();
+  const List = moviesList.map((movie) => {
+    return {...movie, liked: false}
+  })
+
+  return List
+}

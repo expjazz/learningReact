@@ -1,9 +1,7 @@
 import React from 'react'
-
+import Like from './Like'
 export default function Table(props) {
-  console.log(props.movies)
   const keys = Object.keys(props.movies.movies[0]);
-  console.log(keys)
   return (
     <table className="table">
   <thead>
@@ -29,6 +27,7 @@ export default function Table(props) {
 
         <td>{movie.numberInStock}</td>
         <td>{movie.dailyRentalRate}</td>
+        <td> <Like movie={movie} onLike={props.onLike}/> </td>
         <td>{movie.publishDate}</td>
         <button className="btn btn-danger" onClick={() => props.removeMovie(movie._id)}>Remove</button>
       </tr>

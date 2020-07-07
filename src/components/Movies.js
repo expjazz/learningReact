@@ -3,7 +3,21 @@ import * as movies from '../fakeMovieService'
 import Table from './Table'
 export default class Movies extends Component {
   state = {
-    movies: movies.getMovies()
+    movies: movies.addLikesToMovies()
+  }
+
+  handleLike = (movieP) => {
+    const newMovies = this.state.movies.map((movie) => {
+      if (movie === movieP) {
+        movie.liked = !movie.liked
+        return movie
+      } else {
+        return movie
+      }
+    });
+    this.setState({
+      movies: newMovies
+    })
   }
 
   removeMovie = (id) => {
@@ -13,10 +27,9 @@ export default class Movies extends Component {
     )
   }
   render() {
-    console.log(this.state)
     return (
       <div className='container'>
-        {this.state.movies.length > 0 ? <Table movies={this.state} removeMovie={this.removeMovie} /> : 'The table is empty'}
+        {this.state.movies.length > 0 ? <Table movies={this.state} removeMovie={this.removeMovie} onLike={this.handleLike}/> : 'The table is empty'}
         
       </div>
     )
