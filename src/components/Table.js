@@ -1,7 +1,8 @@
 import React from 'react'
 import Like from './Like'
 export default function Table(props) {
-  const keys = Object.keys(props.movies.movies[0]);
+  console.log(props)
+  const keys = Object.keys(props.movies[0]);
   return (
     <table className="table">
   <thead>
@@ -16,7 +17,7 @@ export default function Table(props) {
     </tr>
   </thead>
   <tbody>
-    {props.movies.movies.map((movie) => {
+    {props.movies.map((movie) => {
       return (
         <tr key={movie._id}>
                   <th scope="row"></th>
