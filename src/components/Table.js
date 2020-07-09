@@ -1,7 +1,6 @@
 import React from 'react'
 import Like from './Like'
 export default function Table(props) {
-  console.log(props)
   const keys = Object.keys(props.movies[0]);
   return (
     <table className="table">
