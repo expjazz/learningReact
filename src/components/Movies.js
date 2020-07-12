@@ -17,7 +17,8 @@ export default class Movies extends Component {
 
   handleCurrentGenre = (genre) => {
     this.setState({
-      currentGenre: genre
+      currentGenre: genre,
+      currentPage: 1
     })
   }
 
@@ -87,7 +88,7 @@ export default class Movies extends Component {
             </div>
         <Pagination
           currentPage={this.state.currentPage}
-          itemsCount={this.state.movies.length}
+          itemsCount={this.filterMovies().length}
           pageSize={this.state.pageSize}
           onPageChange={this.handlePageChange}
         />
