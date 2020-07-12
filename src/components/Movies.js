@@ -5,7 +5,8 @@ import Pagination from "./common/Pagination";
 import { paginate } from "../utils/paginate";
 import ListGroup from "./common/ListGroup";
 import { getGenres } from '../fakeGenreService';
-import _ from 'lodash'
+import _ from 'lodash';
+
 
 export default class Movies extends Component {
   state = {
@@ -62,14 +63,8 @@ export default class Movies extends Component {
     this.setState({ currentPage: page });
   };
 
-  handleSort = path => {
-    const sortColumn = {...this.state.sortColumn}
-    if (sortColumn.path === path) {
-      sortColumn.order = (sortColumn.order === 'asc') ? 'desc' : 'asc'
-    } else {
-      sortColumn.path = path;
-      sortColumn.order = 'asc';
-    }
+  handleSort = sortColumn => {
+
     this.setState({ sortColumn })
   }
   removeMovie = (id) => {
@@ -98,6 +93,7 @@ export default class Movies extends Component {
         {this.state.movies.length > 0 ? (
           <Table
           movies={movies}
+          sortColumn={this.state.sortColumn}
           removeMovie={this.removeMovie}
           onLike={this.handleLike}
           onSort={this.handleSort}

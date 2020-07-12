@@ -1,23 +1,25 @@
-import React from 'react'
-import Like from './Like'
-export default function Table(props) {
-  const keys = Object.keys(props.movies[0]);
-  const { onSort } = props;
+import React, { Component } from "react";
+import Like from './Like';
+import TableHeader from './common/TableHeader'
+
+export default class Table extends Component {
+  columns = [
+    { },
+    { path: 'title', label: 'Title'},
+    { path: 'genre.name', label: 'Genre'},
+    { path: 'numberInStock', label: 'Stock'},
+    { },
+    { },
+
+  ]
+
+  render() {
   return (
     <table className="table">
-  <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th onClick={()=> {onSort('title')}}> Title </th>
-      <th onClick={()=> {onSort('genre.name')}}> Genre </th>
-      <th onClick={()=> {onSort('numberInStock')}}> Stock </th>
-      <th onClick={()=> {onSort('dailyRentalRate')}}> Rate </th>
-
-
-    </tr>
-  </thead>
+     <TableHeader columns={this.columns} sortColumn={this.props.sortColumn} onSort={this.props.onSort}/>
+  
   <tbody>
-    {props.movies.map((movie) => {
+    {this.props.movies.map((movie) => {
       return (
         <tr key={movie._id}>
                   <th scope="row"></th>
@@ -27,13 +29,13 @@ export default function Table(props) {
 
         <td>{movie.numberInStock}</td>
         <td>{movie.dailyRentalRate}</td>
-        <td> <Like movie={movie} onLike={props.onLike}/> </td>
-        <button className="btn btn-danger" onClick={() => props.removeMovie(movie._id)}>Remove</button>
+        <td> <Like movie={movie} onLike={this.props.onLike}/> </td>
+        <button className="btn btn-danger" onClick={() => this.props.removeMovie(movie._id)}>Remove</button>
       </tr>
       )
     })}
 
   </tbody>
 </table>
-  )
+  )}
 }
