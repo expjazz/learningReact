@@ -11,8 +11,8 @@ export default class TableBody extends Component {
     return (
       <tbody>
         {data.map(item => 
-                  <tr>
-                 { columns.map(column => <td>{this.renderCell(item, column)}</td>)}
+                  <tr key={item._id}>
+                 { columns.map(column => <td key={item._id + (column.path || column.content)}>{this.renderCell(item, column)}</td>)}
                 </tr>
           
           )}
