@@ -2,16 +2,17 @@ import React from 'react'
 import Like from './Like'
 export default function Table(props) {
   const keys = Object.keys(props.movies[0]);
+  const { onSort } = props;
   return (
     <table className="table">
   <thead>
     <tr>
       <th scope="col">#</th>
-      {keys.map((key) => {
-        return (
-        <th scope="col" key={key}>{key}</th>)
-        
-      })}
+      <th onClick={()=> {onSort('title')}}> Title </th>
+      <th onClick={()=> {onSort('genre.name')}}> Genre </th>
+      <th onClick={()=> {onSort('numberInStock')}}> Stock </th>
+      <th onClick={()=> {onSort('dailyRentalRate')}}> Rate </th>
+
 
     </tr>
   </thead>
@@ -21,14 +22,12 @@ export default function Table(props) {
         <tr key={movie._id}>
                   <th scope="row"></th>
 
-        <td>{movie._id}</td>
         <td>{movie.title}</td>
         <td>{movie.genre.name}</td>
 
         <td>{movie.numberInStock}</td>
         <td>{movie.dailyRentalRate}</td>
         <td> <Like movie={movie} onLike={props.onLike}/> </td>
-        <td>{movie.publishDate}</td>
         <button className="btn btn-danger" onClick={() => props.removeMovie(movie._id)}>Remove</button>
       </tr>
       )

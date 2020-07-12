@@ -8,12 +8,18 @@ import { getGenres } from '../fakeGenreService'
 
 export default class Movies extends Component {
   state = {
-    movies: movies.addLikesToMovies(),
+    movies: [],
     pageSize: 4,
     currentPage: 1,
-    genres: [{_id: 1, name: 'all'}, ...getGenres()],
+    genres: [],
     currentGenre: 'all'
   };
+
+  componentDidMount() {
+    const genres =  [{_id: '', name: 'all'}, ...getGenres()];
+
+    this.setState({movies: movies.addLikesToMovies(), genres})
+  }
 
   handleCurrentGenre = (genre) => {
     this.setState({
@@ -53,6 +59,10 @@ export default class Movies extends Component {
   handlePageChange = (page) => {
     this.setState({ currentPage: page });
   };
+
+  handleSort = path => {
+    this.setState({ sortColumn: { path, order: 'asc'} })
+  }
   removeMovie = (id) => {
     const newMovies = this.state.movies.filter((movie) => movie._id !== id);
     this.setState({
@@ -80,6 +90,7 @@ export default class Movies extends Component {
           movies={movies}
           removeMovie={this.removeMovie}
           onLike={this.handleLike}
+          onSort={this.handleSort}
           />
           ) : (
             "The table is empty"
