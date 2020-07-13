@@ -20,6 +20,10 @@ export default function NavBar() {
       <li className="nav-item">
         <NavLink className="nav-link" to="/rentals">Rentals</NavLink>
       </li>
+
+      <li className="nav-item">
+        <NavLink className="nav-link" to="/login">Log In</NavLink>
+      </li>
     </ul>
 
 </nav>
