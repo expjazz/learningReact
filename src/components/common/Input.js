@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Input({ name, label, value, error, onChange }) {
+export default function Input({ type, name, label, value, error, onChange }) {
   return (
     <div className="form-group">
     <label htmlFor={name}> {label} </label>
@@ -8,7 +8,7 @@ export default function Input({ name, label, value, error, onChange }) {
       value={value}
       autoFocus
       onChange={onChange}
-      type="text"
+      type={type}
       id={name}
       name={name}
       className="form-control"
