@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import Input from "./common/Input";
+import Joi, { validate } from "joi-browser";
 export default class RegisterForm extends Component {
   state = {
     data: {
@@ -10,19 +11,14 @@ export default class RegisterForm extends Component {
     errors: {},
   };
 
+  schema = {
+    username: Joi.string().required(),
+    password: Joi.string().required(),
+    name: Joi.string().required(),
+  };
   validate = () => {
     const errors = {};
-    const { data } = this.state;
-    Object.keys(data).forEach((key) => {
-      if (data[key].trim() === "") {
-        errors[key] = `${key} cannot be empty`;
-      }
-    });
-
-    // if (data[data.name].trim() === "") {
-    //   errors[data.name] = `${data.name} is required`;
-    // }
-    return Object.keys(errors).length === 0 ? null : errors;
+    const result = ''
   };
 
   handleChange = ({ currentTarget: input }) => {
@@ -89,3 +85,13 @@ export default class RegisterForm extends Component {
 //   const { error } = Joi.validate(obj, schema);
 //   return error ? error.details[0].message : null;
 // };
+
+// Naive validate
+// validate = () => {
+//   const errors = {};
+//   const { data } = this.state;
+//   Object.keys(data).forEach((key) => {
+//     if (data[key].trim() === "") {
+//       errors[key] = `${key} cannot be empty`;
+//     }
+//   });

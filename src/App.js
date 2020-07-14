@@ -9,7 +9,7 @@ import NavBar from './components/NavBar';
 import MovieForm from  './components/MovieForm'
 import LoginForm from  './components/LoginForm'
 import RegisterForm from './components/RegisterForm'
-
+import FormikLearning from './components/FormikLearning'
 
 
 function App() {
@@ -21,6 +21,7 @@ function App() {
       <Route path='/login' component={LoginForm} />
 
         <Route path='/movies/:id' component={MovieForm} />
+        <Route path='/formik' component={FormikLearning} />
         <Route path='/register' component={RegisterForm} />
         <Route path="/movies" component={Movies}></Route>
         <Route path="/customers" component={Customers}></Route>

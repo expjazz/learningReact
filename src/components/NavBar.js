@@ -28,6 +28,9 @@ export default function NavBar() {
       <li className="nav-item">
         <NavLink className='nav-link' to='/register'> Sign Up</NavLink>
       </li>
+      <li className="nav-item">
+        <NavLink className='nav-link' to='/formik'> Sign Up</NavLink>
+      </li>
     </ul>
 
 </nav>
