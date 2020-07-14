@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default function Input({name, onChange, value, label}) {
+export default function Input({name, onChange, value, label, errors}) {
   return (
     <div className="form-group">
       <label htmlFor={name}>{label}</label>
@@ -12,6 +12,9 @@ export default function Input({name, onChange, value, label}) {
         className="form-control"
         onChange={onChange}
       />
+      { errors && <div className="alert alert-danger">
+        { errors }
+      </div>  }
   </div>
   )
 }
