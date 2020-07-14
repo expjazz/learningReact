@@ -18,7 +18,7 @@ export default class RegisterForm extends Component {
         errors[key] = `${key} cannot be empty`;
       }
     });
-    console.log(errors);
+
     // if (data[data.name].trim() === "") {
     //   errors[data.name] = `${data.name} is required`;
     // }
@@ -28,7 +28,8 @@ export default class RegisterForm extends Component {
   handleChange = ({ currentTarget: input }) => {
     const data = { ...this.state.data };
     data[input.name] = input.value;
-    this.setState({ data });
+    const errors = this.validateProperty(input);
+    this.setState({ data, errors });
   };
   handleSubmit = (e) => {
     e.preventDefault();
@@ -36,6 +37,16 @@ export default class RegisterForm extends Component {
     this.setState({ errors: errors || {} });
     if (errors) return;
     console.log("submit");
+  };
+
+  validateProperty = ({ name, value }) => {
+    const errors = {};
+    const { data } = this.state;
+    if (value.trim() === "") {
+      errors[name] = `${name} cannot be empty`;
+    }
+    this.setState({ data });
+    return Object.keys(errors).length > 0 ? errors : this.state.errors;
   };
 
   render() {
@@ -55,12 +66,14 @@ export default class RegisterForm extends Component {
           onChange={this.handleChange}
           value={data.password}
           label="Password"
+          errors={errors.password}
         />
         <Input
           name="name"
           onChange={this.handleChange}
           value={data.name}
           label="Name"
+          errors={errors.name}
         />
         <button className="btn btn-primary">Submit</button>
       </form>
@@ -69,3 +82,10 @@ export default class RegisterForm extends Component {
 }
 
 // username password name
+
+// validateProperty = ({ name, value }) => {
+//   const obj = { [name]: value };
+//   const schema = { [name]: this.schema[name] };
+//   const { error } = Joi.validate(obj, schema);
+//   return error ? error.details[0].message : null;
+// };
