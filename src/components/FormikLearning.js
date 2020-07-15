@@ -34,16 +34,16 @@ export default function FormikLearning() {
   return (
     <form onSubmit={formik.handleSubmit}>
       <label htmlFor="username">username</label>
-      <input type="text" id="username" onChange={formik.handleChange} value={formik.values.username}/>
-      {formik.errors.username ? <div>{formik.errors.username}</div> : null}
+      <input type="text" id="username" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.username}/>
+      {formik.touched.username && formik.errors.username ? <div>{formik.errors.username}</div> : null}
 
       <label htmlFor="password">password</label>
-      <input type="password" id="password" onChange={formik.handleChange} value={formik.values.password}/>
-      {formik.errors.password ? <div>{formik.errors.password}</div> : null}
+      <input type="password" id="password" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.password}/>
+      {formik.touched.password && formik.errors.password ? <div>{formik.errors.password}</div> : null}
 
       <label htmlFor="name">name</label>
-      <input type="text" id="name" onChange={formik.handleChange} value={formik.values.name}/>
-      {formik.errors.name ? <div>{formik.errors.name}</div> : null}
+      <input type="text" id="name" onBlur={formik.handleBlur} onChange={formik.handleChange} value={formik.values.name}/>
+      {formik.touched.name && formik.errors.name ? <div>{formik.errors.name}</div> : null}
 
       
       <button type='submit'>Submit</button>
